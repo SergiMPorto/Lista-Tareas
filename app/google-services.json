@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "482922853874",
+    "project_id": "mistareas-f00ec",
+    "storage_bucket": "mistareas-f00ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482922853874:android:bed6f5d98866e50e11276b",
+        "android_client_info": {
+          "package_name": "com.example.todolist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBN-nbgPHAVJFx4aHa3qG9MAC6X8-VLpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
