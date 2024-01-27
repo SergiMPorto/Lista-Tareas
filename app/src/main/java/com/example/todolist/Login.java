@@ -176,12 +176,12 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Inicio de sesión con Google exitoso
+                         
                             Toast.makeText(Login.this, "Inicio de sesión con Google exitoso", Toast.LENGTH_SHORT).show();
                             navigateToMainActivity();
-                            actualizarUI();  // Llama a actualizarUI() después de iniciar sesión con Google
+                            actualizarUI(); 
                         } else {
-                            // Fallo en el inicio de sesión con Google
+                           
                             Toast.makeText(Login.this, "Error al iniciar sesión con Google", Toast.LENGTH_SHORT).show();
                         }
                     }
