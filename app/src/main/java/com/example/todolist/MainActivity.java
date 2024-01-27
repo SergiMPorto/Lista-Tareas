@@ -1,25 +1,25 @@
 package com.example.todolist;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,7 +37,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private String idUser;
@@ -48,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
     List<String> listaTareas = new ArrayList<>();
     List<String> listaIdeTareas = new ArrayList<>();
 
+    EditText editTextTarea;
+    TextView textViewTarea;
+    Button btnGuardar;
+    Button btnCancelar;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +71,25 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         listViewTareas = findViewById(R.id.tarea);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         adapterTareas = new ArrayAdapter<>(this, R.layout.tareas, R.id.textViewTarea, listaTareas);
         listViewTareas.setAdapter(adapterTareas);
+
+        editTextTarea = findViewById(R.id.editTextTarea);
+        textViewTarea = findViewById(R.id.textViewTarea);
+
+        btnGuardar = findViewById(R.id.btnGuardar);
+        btnCancelar = findViewById(R.id.btnCancelar);
+
+        listViewTareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String tareaSeleccionada = listaTareas.get(position);
+
+            }
+        });
 
         actualizarUI();
     }
@@ -81,44 +103,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            final EditText tarea = new EditText(this);
-            AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setTitle("Nueva Tarea")
-                    .setMessage("Introduce la tarea deseada")
-                    .setView(tarea)
-                    .setPositiveButton("Añadir", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String nuevaTarea = tarea.getText().toString();
-                            Toast.makeText(MainActivity.this, "Tarea añadida: " + nuevaTarea, Toast.LENGTH_SHORT).show();
 
-                            Map<String, Object> data = new HashMap<>();
-                            data.put("nombreTarea", nuevaTarea);
-                            data.put("usuario", idUser);
-
-                            db.collection("Tareas")
-                                    .add(data)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                        @Override
-                                        public void onSuccess(DocumentReference documentReference) {
-                                            Toast.makeText(MainActivity.this, "Tarea añadida: " + nuevaTarea, Toast.LENGTH_SHORT).show();
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(MainActivity.this, "Fallo al crear la tarea: ", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                        }
-                    })
-                    .setNegativeButton("Cancelar", null)
-                    .create();
-
-            dialog.show();
-
+            mostrarDialogoNuevaTarea();
             return true;
         } else if (item.getItemId() == R.id.out) {
+            // Cerrar sesión
             mAuth.signOut();
             startActivity(new Intent(MainActivity.this, Login.class));
             finish();
@@ -128,8 +117,69 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void mostrarDialogoNuevaTarea() {
+        final EditText tarea = new EditText(this);
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Nuevo Título")
+                .setMessage("Introduce tu nueva lectura")
+                .setView(tarea)
+                .setPositiveButton("Añadir", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String nuevaTarea = tarea.getText().toString();
+                        Toast.makeText(MainActivity.this, "Libro añadido: " + nuevaTarea, Toast.LENGTH_SHORT).show();
+
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("nombreTarea", nuevaTarea);
+                        data.put("usuario", idUser);
+
+                        db.collection("Tareas")
+                                .add(data)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Toast.makeText(MainActivity.this, "Tarea añadida: " + nuevaTarea, Toast.LENGTH_SHORT).show();
+                                        actualizarUI();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(MainActivity.this, "Fallo al crear la tarea: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .create();
+
+        dialog.show();
+    }
+
+    private void actualizarTareaEnBD(int posicion, String nuevaTarea) {
+        String idTarea = listaIdeTareas.get(posicion);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("nombreTarea", nuevaTarea);
+
+        db.collection("Tareas").document(idTarea)
+                .update(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(MainActivity.this, "Libro actualizado", Toast.LENGTH_SHORT).show();
+                        actualizarUI();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Error al actualizar el libro", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void actualizarUI() {
-        Log.d("MainActivity", "ID del Usuario: " + idUser);
         db.collection("Tareas")
                 .whereEqualTo("usuario", idUser)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -137,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onEvent(@Nullable QuerySnapshot value,
                                         @Nullable FirebaseFirestoreException e) {
                         if (e != null) {
-                            Log.w(TAG, "Listen failed.", e);
                             return;
                         }
 
@@ -160,5 +209,36 @@ public class MainActivity extends AppCompatActivity {
         String tarea = tareaTextView.getText().toString();
         int posicion = listaTareas.indexOf(tarea);
         db.collection("Tareas").document(listaIdeTareas.get(posicion)).delete();
+        actualizarUI();
+    }
+
+    public void editarTarea(View view) {
+        final EditText editText = new EditText(this);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Editar Libro");
+        builder.setMessage("Ingrese el título:");
+
+
+        builder.setView(editText);
+
+
+        builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String nuevoTexto = editText.getText().toString();
+                actualizarTareaEnBD(listaTareas.indexOf(textViewTarea.getText().toString()), nuevoTexto);
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
     }
 }

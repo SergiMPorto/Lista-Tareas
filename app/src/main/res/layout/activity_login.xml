@@ -2,10 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/googleButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondologin"
-    tools:context=".Login">
+    tools:context=".Login"
+    tools:ignore="ExtraText">
 
     <TextView
         android:id="@+id/textView2"
@@ -13,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/freebsc"
-        android:text="@string/mis_tareas"
-        android:textColor="@color/green1"
+        android:text="@string/mis_libros"
+        android:textColor="@color/marron1"
         android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +27,7 @@
         android:id="@+id/layoutCorreo"
         android:layout_width="324dp"
         android:layout_height="63dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -36,12 +38,15 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:hint="@string/hintCorreo"
-            android:textColorHint="@color/green2"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:textColorHint="@color/defaultColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        />
 
         <requestFocus
-            android:layout_width="29dp"
-            android:layout_height="21dp" />
+            android:layout_width="15dp"
+            android:layout_height="15dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,40 +65,60 @@
             android:backgroundTint="@color/white"
             android:hint="@string/hintPass"
             android:inputType="textPassword"
-            android:textColorHint="@color/green2"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:textColorHint="@color/defaultColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/botonlogin"
         android:layout_width="309dp"
         android:layout_height="62dp"
-        android:layout_marginTop="64dp"
-        app:backgroundTint="@null"
+        android:layout_marginTop="32dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/adamina"
         android:text="@string/Login"
         android:textSize="25sp"
         android:textStyle="bold"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:strokeColor="@color/green1" />
-
+        app:strokeColor="@color/marron1" />
 
     <TextView
         android:id="@+id/botonRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-
+        android:layout_width="302dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
         android:text="@string/crea_una_cuenta"
-        android:textColor="@color/green2"
-        android:textSize="22sp"
+        android:textColor="@color/marron2"
+        android:textSize="27sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonlogin" />
+        app:layout_constraintTop_toBottomOf="@+id/google" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/google"
+        android:layout_width="308dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="208dp"
+        android:text="Iniciar con Google"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/black"
+        app:icon="@drawable/googlesymbol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
