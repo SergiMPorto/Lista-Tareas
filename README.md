@@ -55,6 +55,20 @@ La aplicación se puede instalar tanto en tablet como móvil.
 Aunque el proyecto funciona bien en el simulador de Android Studio. Tenemos varios problemas con la aplicación en su instalación en dispositivos físicos. 
 
 
+
+
+<h2>Funcionamiento Firebase</h2>
+
+
+
+
+
+![Autentificación](https://github.com/SergiMPorto/Lista-Tareas/assets/121488207/db595058-25ba-4dad-b293-491e98b777f9)
+
+![database](https://github.com/SergiMPorto/Lista-Tareas/assets/121488207/f2b95bda-b233-4d90-8ec5-3f31b800443f)
+
+
+
 <h2>Tecnologías utilizadas</h2>
 Android version "8.2.1"
 Java 
