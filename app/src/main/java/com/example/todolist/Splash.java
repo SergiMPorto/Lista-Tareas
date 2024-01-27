@@ -10,6 +10,7 @@ import android.widget.VideoView;
 
 public class Splash extends AppCompatActivity {
     private static final int SPLASH_TIME_OUT = 5200;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,5 +47,4 @@ public class Splash extends AppCompatActivity {
             videoViewSplash.pause();
         }
     }
-
 }

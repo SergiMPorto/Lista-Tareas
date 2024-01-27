@@ -1,5 +1,4 @@
 package com.example.todolist;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.todolist.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -145,7 +145,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void actualizarUI() {
-
+        // Puedes realizar acciones adicionales después de iniciar sesión o registrarte
     }
 
     @Override
