@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
         botonRegistro = findViewById(R.id.botonRegistro);
         google = findViewById(R.id.google);
 
-        // Configuración de inicio de sesión con Google
+        // Inicio con Google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -145,7 +145,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void actualizarUI() {
-        // Puedes realizar acciones adicionales después de iniciar sesión o registrarte
+
     }
 
     @Override
@@ -163,7 +163,7 @@ public class Login extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             firebaseAuthWithGoogle(account);
         } catch (ApiException e) {
-            // Imprimir mensaje de error
+            
             Log.e("GoogleSignInError", "Error al iniciar sesión con Google: " + e.getStatusCode());
             Toast.makeText(Login.this, "Error al iniciar sesión con Google", Toast.LENGTH_SHORT).show();
         }
