@@ -22,7 +22,10 @@ Para insertar un libro pulsamos sobre el icono 1. Nos aparecerá la siguiente ve
 
 
 Cuando añadimos un libro nos sale la siguiente pantalla y una vez le damos a aceptar nos aparecerá en las listas de libros
+
 ![añadiendo titulo](https://github.com/SergiMPorto/Lista-Tareas/assets/121488207/d04d2d3e-3dc8-4a39-bf7c-eb25c4514744)
+
+
 
 
 
@@ -30,13 +33,19 @@ Cuando añadimos un libro nos sale la siguiente pantalla y una vez le damos a ac
 Introducido un libro nos aparecerá en pantalla dos botones uno para editar y otro para borrar el libro
 ![Captura de pantalla 2024-01-27 205602](https://github.com/SergiMPorto/Lista-Tareas/assets/121488207/096ef77c-7582-4fe8-aad4-78919e2d782d)T
 
+
+
 ![editar](https://github.com/SergiMPorto/Lista-Tareas/assets/121488207/80c84571-3273-4f91-b768-6c6d055addf8)
 Ventana de Edición
+
+
 
 
 La aplicación se puede instalar tanto en tablet como móvil. 
 
 ![Tablet (2)](https://github.com/SergiMPorto/Lista-Tareas/assets/121488207/84f3d2b2-506b-41b9-8a0e-3a8f2c515586)
+
+
 
 
 <h2>Estado del proyecto</h2>
