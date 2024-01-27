@@ -2,9 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="green1">#00796b</color>
-    <color name="green2">#1e8449</color>
-    <color name="green3">#148f77</color>
+    <color name="marron1">#794300</color>
+    <color name="marron2">#845B1E</color>
+    <color name="marron3">#C1A678</color>
     <color name="naranja">#BB3D16</color>
     <color name="blue">#22E4F5</color>
     <color name="greenn4">#8BC34A</color>
@@ -13,5 +13,9 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+    <color name="luz">#FFFFFFFF</color>
+    <color name="pressedColor" >#A35E5A5A</color>
+    <color name="defaultColor">#422B02</color>
+
 
 </resources>

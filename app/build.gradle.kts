@@ -45,8 +45,10 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.google.firebase:firebase-auth")
     implementation ("com.google.firebase:firebase-database")
-    implementation ("com.google.firebase:firebase-auth:22.0.0") // Utiliza la versión más reciente
-    implementation ("com.google.firebase:firebase-firestore:24.0.0") // Utiliza la versión más reciente
-    implementation ("com.mikhaellopez:circularprogressbar:3.1.0")
+    implementation ("com.google.firebase:firebase-auth:22.0.0")
+    implementation ("com.google.firebase:firebase-firestore:24.0.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+
 
 }
