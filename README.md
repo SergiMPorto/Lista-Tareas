@@ -1,6 +1,9 @@
 <h1 align="center"><em> # Mis Libros </em> </h1>
-https://github.com/SergiMPorto/Lista-Tareas/blob/main/app/src/main/res/drawable/logo.png
+
+
 https://img.shields.io/badge/https%3A%2F%2Fgithub.com%2FSergiMPorto%2FLista-Tareas
+![logo](https://github.com/SergiMPorto/Lista-Tareas/assets/121488207/934cbfe4-7e4c-4141-901f-8076a44f58f7)
+
 
 <h2>Descripción del Proyecto</h2>
 Aplicación para Android realizada con lenguaje Java. Según la versión de Android... y Firebase...
